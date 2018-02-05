@@ -6,11 +6,7 @@ import pl.blaszak.ptc.model.{And, Or, Wire, Xor}
 class PtcProcessorTest extends FunSuite {
 
   test("Simple OrGate test") {
-    val scheduler = new PtcScheduler()
-    scheduler.addInput(Map("a" -> false, "b" -> false))
-    scheduler.addInput(Map("a" -> false, "b" -> true))
-    scheduler.addInput(Map("a" -> true, "b" -> false))
-    scheduler.addInput(Map("a" -> true, "b" -> true))
+    val scheduler = new PtcScheduler(new AllBinaryPossibilitiesInputsInitializer(List("a", "b")))
     val processor = new PtcProcessor(scheduler)
     val wireA = new Wire(processor.createInput("a"))
     val wireB = new Wire(processor.createInput("b"))
@@ -21,7 +17,7 @@ class PtcProcessorTest extends FunSuite {
   }
 
   test("Adder test") {
-    val scheduler = new PtcScheduler()
+    val scheduler = new PtcScheduler(new AllBinaryPossibilitiesInputsInitializer(List("ai", "bi", "ci")))
     val processor = new PtcProcessor(scheduler)
     val wireAi = new Wire(processor.createInput("ai"))
     val wireBi = new Wire(processor.createInput("bi"))
@@ -38,14 +34,6 @@ class PtcProcessorTest extends FunSuite {
     val gateOr5 = new Or(wireAnd3Or5, wireAnd4Or5)
     val wireCj = new Wire(gateOr5)
     processor.registerOutput("Cj", wireCj)
-    scheduler.addInput(Map("ai" -> false, "bi" -> false, "ci" -> false))
-    scheduler.addInput(Map("ai" -> false, "bi" -> true, "ci" -> false))
-    scheduler.addInput(Map("ai" -> true, "bi" -> false, "ci" -> false))
-    scheduler.addInput(Map("ai" -> true, "bi" -> true, "ci" -> false))
-    scheduler.addInput(Map("ai" -> false, "bi" -> false, "ci" -> true))
-    scheduler.addInput(Map("ai" -> false, "bi" -> true, "ci" -> true))
-    scheduler.addInput(Map("ai" -> true, "bi" -> false, "ci" -> true))
-    scheduler.addInput(Map("ai" -> true, "bi" -> true, "ci" -> true))
     processor.execute
   }
 

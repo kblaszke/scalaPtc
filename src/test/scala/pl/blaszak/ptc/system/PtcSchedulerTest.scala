@@ -4,7 +4,7 @@ import org.scalatest.FunSuite
 
 class PtcSchedulerTest extends FunSuite {
 
-  test("") {
+  /*test("") {
     var ptcScheduler = new PtcScheduler()
     ptcScheduler.addInput(Map("a" -> false, "b" -> false))
     ptcScheduler.addInput(Map("a" -> false, "b" -> true))
@@ -12,6 +12,6 @@ class PtcSchedulerTest extends FunSuite {
     for(i <- 0 until ptcScheduler.endTime by 10) {
       println(i + ": " + ptcScheduler.getInputs(i))
     }
-  }
+  }*/
 
 }

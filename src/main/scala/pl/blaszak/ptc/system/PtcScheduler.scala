@@ -1,16 +1,8 @@
 package pl.blaszak.ptc.system
 
-import scala.collection.mutable
+class PtcScheduler(inputsInitializer: InputsInitializer) {
 
-class PtcScheduler(step: Int = 10) {
-
-  private var schedule: mutable.HashMap[Int, Map[String, Boolean]] = new mutable.HashMap[Int, Map[String, Boolean]]()
-  var endTime = 0
-
-  def addInput(inputs: Map[String, Boolean]): Unit = {
-    schedule += (endTime -> inputs)
-    endTime += step
-  }
+  private val schedule: Map[Int, Map[String, Boolean]] = inputsInitializer.init()
 
   def getInputs(time: Int): Map[String, Boolean] = {
     schedule(time)
@@ -20,5 +12,7 @@ class PtcScheduler(step: Int = 10) {
     schedule(time)(inputName)
   }
 
-  def getStep: Int = this.step
+  def getStep(): Int = inputsInitializer.getStep()
+
+  def getEndTime(): Int = schedule.keySet.max
 }

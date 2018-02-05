@@ -20,7 +20,7 @@ class PtcProcessor(scheduler: PtcScheduler) {
   }
 
   def execute: Unit = {
-    for(time <- 0 until scheduler.endTime by scheduler.getStep) {
+    for(time <- 0 until scheduler.getEndTime() by scheduler.getStep) {
       print(time + ":")
       inputs.foreach(inputCouple => {
         inputCouple._2.setState(scheduler.getInput(time, inputCouple._1))
