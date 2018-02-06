@@ -14,7 +14,7 @@ class PtcScheduler(inputsInitializer: InputsInitializer) {
     schedule(time)(inputName)
   }
 
-  def getStep(): Int = inputsInitializer.getStep()
+  def getStep: Int = inputsInitializer.getStep
 
-  def getEndTime(): Int = schedule.keySet.max
+  def getEndTime: Int = schedule.keySet.max
 }

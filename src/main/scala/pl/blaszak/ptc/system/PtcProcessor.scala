@@ -19,16 +19,16 @@ class PtcProcessor(scheduler: PtcScheduler) {
     outputs.put(name, element)
   }
 
-  def setInputs(inputStates: mutable.Map[String, Boolean]) = {
+  def setInputs(inputStates: mutable.Map[String, Boolean]): Unit = {
     inputs.foreach(input => input._2.setState(inputStates(input._1)))
   }
 
   def execute: List[(Int, mutable.Map[String, Boolean], mutable.Map[String, Boolean])] = {
-    val results = List.range(0, scheduler.getEndTime(), scheduler.getStep())
+    val results = List.range(0, scheduler.getEndTime, scheduler.getStep)
       .map(time => {
         val inputsState = scheduler.getInputs(time)
         setInputs(inputsState)
-        val outputsState = outputs.map(output => (output._1, output._2.getOutput()))
+        val outputsState = outputs.map(output => (output._1, output._2.getOutput))
         (time, inputsState, outputsState)
       })
     results

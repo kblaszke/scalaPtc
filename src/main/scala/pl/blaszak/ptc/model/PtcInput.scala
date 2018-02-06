@@ -4,9 +4,9 @@ class PtcInput extends PtcElement {
 
   var state = false
 
-  override def getOutput(): Boolean = {
+  override def getOutput: Boolean = {
     state
   }
 
-  def setState(newState: Boolean) = this.state = newState
+  def setState(newState: Boolean): Unit = this.state = newState
 }

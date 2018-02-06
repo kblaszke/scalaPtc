@@ -5,7 +5,7 @@ import scala.collection.mutable
 object ptcPrinter {
 
   private def getValue(booleanValue: Boolean): String = {
-    if (booleanValue == true) "1"
+    if (booleanValue) "1"
     else "0"
   }
 

@@ -25,7 +25,7 @@ class AllBinaryPossibilitiesInputsInitializerTest extends FunSuite {
     assert(result.size === 4)
   }
 
-  test("shoud init two inputs") {
+  test("should init two inputs") {
     val initializer = new AllBinaryPossibilitiesInputsInitializer(List("a", "b"))
     val result = initializer.init()
     assert(result.size === 4)

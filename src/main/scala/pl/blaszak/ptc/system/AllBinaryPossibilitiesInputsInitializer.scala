@@ -9,5 +9,5 @@ class AllBinaryPossibilitiesInputsInitializer(inputs: List[String], step: Int = 
     List.range(0, allPossibilities.size * step, step) zip allPossibilities toMap
   }
 
-  override def getStep(): Int = step
+  override def getStep: Int = step
 }
