@@ -1,9 +1,15 @@
 package pl.blaszak.ptc.system
 
+import scala.collection.mutable
+
 class AllBinaryPossibilitiesGenerator {
 
-  def generate(inputs: List[String]): List[Map[String, Boolean]] = inputs match {
-    case List() => List()
-    case head :: rest => generate(rest).flatMap(m => List(m ++ Map(head -> false), m ++ Map(head -> true)))
+  def generate(inputs: List[String]): List[mutable.Map[String, Boolean]] = inputs match {
+    case List() => List(mutable.Map())
+    case head :: rest => {
+
+      val restList = generate(rest)
+      restList.flatMap(m => List(m ++ Map(head -> false), m ++ Map(head -> true)))
+    }
     }
 }

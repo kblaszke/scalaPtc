@@ -19,9 +19,9 @@ class PtcProcessorTest extends FunSuite {
   test("Adder test") {
     val scheduler = new PtcScheduler(new AllBinaryPossibilitiesInputsInitializer(List("ai", "bi", "ci")))
     val processor = new PtcProcessor(scheduler)
-    val wireAi = new Wire(processor.createInput("ai"))
-    val wireBi = new Wire(processor.createInput("bi"))
     val wireCi = new Wire(processor.createInput("ci"))
+    val wireBi = new Wire(processor.createInput("bi"))
+    val wireAi = new Wire(processor.createInput("ai"))
     val gateXor1 = new Xor(wireAi, wireBi)
     val wireXor1Xor2 = new Wire(gateXor1)
     val gateXor2 = new Xor(wireXor1Xor2, wireCi)
@@ -34,7 +34,9 @@ class PtcProcessorTest extends FunSuite {
     val gateOr5 = new Or(wireAnd3Or5, wireAnd4Or5)
     val wireCj = new Wire(gateOr5)
     processor.registerOutput("Cj", wireCj)
-    processor.execute
+    val result = processor.execute
+    // result.foreach(test => println(test._1 + ": " + test._2 + " ==>> " + test._3))
+    ptcPrinter.print(result)
   }
 
 }
