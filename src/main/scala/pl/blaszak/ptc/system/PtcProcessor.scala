@@ -28,7 +28,7 @@ class PtcProcessor(scheduler: PtcScheduler) {
       .map(time => {
         val inputsState = scheduler.getInputs(time)
         setInputs(inputsState)
-        val outputsState = outputs.map(output => (output._1, output._2.getOutput))
+        val outputsState = outputs.map(output => (output._1, output._2.output))
         (time, inputsState, outputsState)
       })
     results

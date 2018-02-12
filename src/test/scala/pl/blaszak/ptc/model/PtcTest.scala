@@ -9,6 +9,6 @@ abstract class PtcTest extends FunSuite {
     def setState(state: Boolean): Unit = {
       this.state = state
     }
-    override def getOutput: Boolean = state
+    override def output: Boolean = state
   }
 }

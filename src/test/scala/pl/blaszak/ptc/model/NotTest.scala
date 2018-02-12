@@ -9,11 +9,11 @@ class NotTest extends PtcTest {
 
   test("not 0 => 1") {
     wire.setState(false)
-    assert(not.getOutput() === true)
+    assert(not.output === true)
   }
 
   test("not 1 => 0") {
     wire.setState(false)
-    assert(not.getOutput() === true)
+    assert(not.output === true)
   }
 }
